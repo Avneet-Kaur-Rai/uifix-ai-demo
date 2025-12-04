@@ -178,10 +178,7 @@ const CheckoutPage = () => {
             </div>
 
             <div className="form-actions">
-              {/* UIFIX AI - BUG - UI/UX
-                  Description: Missing "Back to Cart" button - users cannot go back without browser back button
-                  Impact: Poor UX - users stuck on checkout page with no back navigation
-                  Expected: Should have a "Back to Cart" button using variant="outline" */}
+              {/* UIFIX AI - 1 */}
               <Button type="submit" size="large">
                 Continue to Payment
               </Button>

@@ -102,10 +102,7 @@ const ProductDetailPage = () => {
               >
                 Add to Cart
               </Button>
-              {/* UIFIX AI - BUG - STYLE
-                  Description: Buy Now button using 'danger' variant instead of 'secondary'
-                  Impact: Button appears red/error color instead of neutral secondary style
-                  Expected: variant="secondary" for proper CTA styling */}
+              {/* UIFIX AI - 2 */}
               <Button
                 size="large"
                 variant="danger"
