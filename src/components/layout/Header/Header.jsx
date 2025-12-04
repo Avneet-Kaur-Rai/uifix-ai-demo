@@ -13,7 +13,8 @@ const Header = () => {
       <div className="header-container">
         <Link to={ROUTES.HOME} className="logo">
           <span className="logo-icon">🛍️</span>
-          <span className="logo-text">ShopHub</span>
+          {/* UIFIX AI - 4  */}
+            <span className="logo-text">ShopHubb</span>
         </Link>
 
         <nav className="nav">

@@ -84,6 +84,20 @@ This project contains **3 intentionally injected bugs** marked with `UIFIX AI` c
 - **Impact**: Incorrect total price - customers charged 50% tax instead of 10%
 - **Expected Fix**: Change `const tax = subtotal * 0.5` to `const tax = subtotal * 0.1`
 
+### Bug #4: Multi-page Bug (Header.jsx)
+- **Type**: Typo in Site Name (Multi-page)
+- **Location**: `src/components/layout/Header/Header.jsx`
+- **Description**: Site name is misspelled as "ShopHubb" instead of "ShopHub" in the header, affecting all pages.
+- **Impact**: Branding inconsistency across the entire site.
+- **Expected Fix**: Change "ShopHubb" to "ShopHub" in the header component.
+
+### Bug #5: Accessibility Issue (Button.jsx)
+- **Type**: Missing aria-label Support
+- **Location**: `src/components/common/Button/Button.jsx`
+- **Description**: Button component does not support the `aria-label` prop for accessibility.
+- **Impact**: Screen readers may not announce button purpose, especially for icon-only or ambiguous buttons.
+- **Expected Fix**: Add `aria-label` prop support and spread it to the `<button>` element.
+
 ## 🚦 Getting Started
 
 ### Prerequisites
@@ -131,7 +145,7 @@ Since this is a mock application, you can use any credentials:
 This project is designed for showcasing automated UI fix capabilities:
 
 1. **Run the application** to see all features working
-2. **Identify the 3 bugs** marked with `UIFIX AI` comments
+2. **Identify the 5 bugs** marked with `UIFIX AI` comments
 3. **Demonstrate automated detection** of these issues
 4. **Apply automated fixes** to resolve the bugs
 5. **Verify fixes** by testing the affected functionality

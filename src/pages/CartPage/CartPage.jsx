@@ -100,10 +100,7 @@ const CartPage = () => {
                             <span>{getCartTotal() > 100 ? 'FREE' : formatCurrency(10)}</span>
                         </div>
                         <div className="summary-row">
-                            {/* UIFIX AI - BUG - LOGICAL
-                    Description: Tax calculation is incorrect - using 0.5 (50%) instead of 0.1 (10%)
-                    Impact: Customers are overcharged 5x on tax
-                    Expected: Should be getCartTotal() * 0.1 for 10% tax */}
+                            {/* UIFIX AI - 3 */}
                             <span>Tax (10%):</span>
                             <span>{formatCurrency(getCartTotal() * 0.5)}</span>
                         </div>
@@ -111,10 +108,7 @@ const CartPage = () => {
                         <div className="summary-row summary-total">
                             <span>Total:</span>
                             <span>
-                                {/* UIFIX AI - BUG - LOGICAL
-                    Description: Tax calculation is incorrect - using 0.5 (50%) instead of 0.1 (10%)
-                    Impact: Customers are overcharged 5x on tax
-                    Expected: Should be getCartTotal() * 0.1 for 10% tax */}
+                                {/* UIFIX AI - 3 */}
                                 {formatCurrency(
                                     getCartTotal() +
                                     (getCartTotal() > 100 ? 0 : 10) +
