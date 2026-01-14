@@ -8,6 +8,7 @@ import './CartPage.css';
 const CartPage = () => {
     const navigate = useNavigate();
     const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
+    const TAX_RATE = 0.1; // 10% tax
 
     const handleCheckout = () => {
         if (cartItems.length === 0) {
@@ -100,12 +101,11 @@ const CartPage = () => {
                             <span>{getCartTotal() > 100 ? 'FREE' : formatCurrency(10)}</span>
                         </div>
                         <div className="summary-row">
-                            {/* UIFIX AI - BUG - LOGICAL
-                    Description: Tax calculation is incorrect - using 0.5 (50%) instead of 0.1 (10%)
-                    Impact: Customers are overcharged 5x on tax
-                    Expected: Should be getCartTotal() * 0.1 for 10% tax */}
+                            {/* UIFIX AI - BUG - LOGICAL (fixed)
+                    Description: Tax calculation previously used 0.5 (50%) instead of 0.1 (10%)
+                    Fix: Use TAX_RATE (0.1) so tax = getCartTotal() * TAX_RATE */}
                             <span>Tax (10%):</span>
-                            <span>{formatCurrency(getCartTotal() * 0.5)}</span>
+                            <span>{formatCurrency(getCartTotal() * TAX_RATE)}</span>
                         </div>
                         <div className="summary-divider"></div>
                         <div className="summary-row summary-total">
@@ -118,7 +118,7 @@ const CartPage = () => {
                                 {formatCurrency(
                                     getCartTotal() +
                                     (getCartTotal() > 100 ? 0 : 10) +
-                                    getCartTotal() * 0.5
+                                    getCartTotal() * TAX_RATE
                                 )}
                             </span>
                         </div>
