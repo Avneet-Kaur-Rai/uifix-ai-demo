@@ -14,6 +14,13 @@
   cursor: not-allowed;
 }
 
+/* Visible focus styles for keyboard users */
+.btn:focus-visible {
+  outline: 3px solid rgba(102, 126, 234, 0.6);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+}
+
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
