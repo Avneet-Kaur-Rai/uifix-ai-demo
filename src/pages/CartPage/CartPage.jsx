@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { ROUTES } from '../../constants/routes';
-import { formatCurrency } from '../../utils/formatters';
+import { formatCurrency, calculateTax } from '../../utils/formatters';
 import Button from '../../components/common/Button/Button';
 import './CartPage.css';
 
@@ -38,6 +38,11 @@ const CartPage = () => {
             </div>
         );
     }
+
+    const subtotal = getCartTotal();
+    const shipping = subtotal > 100 ? 0 : 10;
+    const tax = calculateTax(subtotal);
+    const total = subtotal + shipping + tax;
 
     return (
         <div className="cart-page">
@@ -93,11 +98,11 @@ const CartPage = () => {
                         <h2 className="summary-title">Order Summary</h2>
                         <div className="summary-row">
                             <span>Subtotal ({cartItems.length} items):</span>
-                            <span>{formatCurrency(getCartTotal())}</span>
+                            <span>{formatCurrency(subtotal)}</span>
                         </div>
                         <div className="summary-row">
                             <span>Shipping:</span>
-                            <span>{getCartTotal() > 100 ? 'FREE' : formatCurrency(10)}</span>
+                            <span>{shipping === 0 ? 'FREE' : formatCurrency(shipping)}</span>
                         </div>
                         <div className="summary-row">
                             {/* UIFIX AI - BUG - LOGICAL
@@ -105,7 +110,7 @@ const CartPage = () => {
                     Impact: Customers are overcharged 5x on tax
                     Expected: Should be getCartTotal() * 0.1 for 10% tax */}
                             <span>Tax (10%):</span>
-                            <span>{formatCurrency(getCartTotal() * 0.5)}</span>
+                            <span>{formatCurrency(tax)}</span>
                         </div>
                         <div className="summary-divider"></div>
                         <div className="summary-row summary-total">
@@ -115,11 +120,7 @@ const CartPage = () => {
                     Description: Tax calculation is incorrect - using 0.5 (50%) instead of 0.1 (10%)
                     Impact: Customers are overcharged 5x on tax
                     Expected: Should be getCartTotal() * 0.1 for 10% tax */}
-                                {formatCurrency(
-                                    getCartTotal() +
-                                    (getCartTotal() > 100 ? 0 : 10) +
-                                    getCartTotal() * 0.5
-                                )}
+                                {formatCurrency(total)}
                             </span>
                         </div>
                         <Button size="large" fullWidth onClick={handleCheckout}>
