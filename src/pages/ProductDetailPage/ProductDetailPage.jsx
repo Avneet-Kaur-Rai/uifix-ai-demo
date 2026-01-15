@@ -108,7 +108,7 @@ const ProductDetailPage = () => {
                   Expected: variant="secondary" for proper CTA styling */}
               <Button
                 size="large"
-                variant="danger"
+                variant="secondary"
                 onClick={handleBuyNow}
                 disabled={!product.inStock}
                 fullWidth
