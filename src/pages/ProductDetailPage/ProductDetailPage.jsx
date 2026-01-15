@@ -105,7 +105,7 @@ const ProductDetailPage = () => {
               {/* UIFIX AI - 2 */}
               <Button
                 size="large"
-                variant="danger"
+                variant="secondary"
                 onClick={handleBuyNow}
                 disabled={!product.inStock}
                 fullWidth
