@@ -2,13 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { ROUTES } from '../../constants/routes';
 import { formatCurrency } from '../../utils/formatters';
+import { TAX_RATE } from '../../constants/tax';
 import Button from '../../components/common/Button/Button';
 import './CartPage.css';
 
 const CartPage = () => {
     const navigate = useNavigate();
     const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
-    const TAX_RATE = 0.1; // 10% tax
+    // Use centralized tax rate
 
     const handleCheckout = () => {
         if (cartItems.length === 0) {
@@ -101,9 +102,6 @@ const CartPage = () => {
                             <span>{getCartTotal() > 100 ? 'FREE' : formatCurrency(10)}</span>
                         </div>
                         <div className="summary-row">
-                            {/* UIFIX AI - BUG - LOGICAL (fixed)
-                    Description: Tax calculation previously used 0.5 (50%) instead of 0.1 (10%)
-                    Fix: Use TAX_RATE (0.1) so tax = getCartTotal() * TAX_RATE */}
                             <span>Tax (10%):</span>
                             <span>{formatCurrency(getCartTotal() * TAX_RATE)}</span>
                         </div>

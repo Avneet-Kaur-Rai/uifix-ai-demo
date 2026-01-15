@@ -4,6 +4,7 @@ import { useCart } from '../../context/CartContext';
 import { ROUTES } from '../../constants/routes';
 import { PAYMENT_METHODS } from '../../constants/enums';
 import { formatCurrency } from '../../utils/formatters';
+import { TAX_RATE } from '../../constants/tax';
 import { validateCardNumber, validateCVV } from '../../utils/validators';
 import Input from '../../components/common/Input/Input';
 import Button from '../../components/common/Button/Button';
@@ -80,7 +81,7 @@ const PaymentPage = () => {
 
   const subtotal = getCartTotal();
   const shipping = subtotal > 100 ? 0 : 10;
-  const tax = subtotal * 0.1;
+  const tax = subtotal * TAX_RATE;
   const calculateGrandTotal = () => subtotal + shipping + tax;
 
   return (

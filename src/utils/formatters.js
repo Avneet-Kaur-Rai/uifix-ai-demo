@@ -1,15 +1,17 @@
+import { TAX_RATE } from "../constants/tax";
+
 export const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(amount);
 };
 
 export const formatDate = (date) => {
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(new Date(date));
 };
 
@@ -17,7 +19,7 @@ export const calculateTotal = (items) => {
   return items.reduce((total, item) => total + item.price * item.quantity, 0);
 };
 
-export const calculateTax = (subtotal, taxRate = 0.1) => {
+export const calculateTax = (subtotal, taxRate = TAX_RATE) => {
   return subtotal * taxRate;
 };
 
