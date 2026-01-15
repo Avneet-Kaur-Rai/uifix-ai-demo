@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { ROUTES } from '../../constants/routes';
-import { formatCurrency } from '../../utils/formatters';
-import { TAX_RATE } from '../../constants/tax';
+import { formatCurrency, calculateTax, calculateShipping } from '../../utils/formatters';
 import Button from '../../components/common/Button/Button';
 import './CartPage.css';
 
@@ -99,11 +98,11 @@ const CartPage = () => {
                         </div>
                         <div className="summary-row">
                             <span>Shipping:</span>
-                            <span>{getCartTotal() > 100 ? 'FREE' : formatCurrency(10)}</span>
+                            <span>{calculateShipping(getCartTotal()) === 0 ? 'FREE' : formatCurrency(calculateShipping(getCartTotal()))}</span>
                         </div>
                         <div className="summary-row">
                             <span>Tax (10%):</span>
-                            <span>{formatCurrency(getCartTotal() * TAX_RATE)}</span>
+                            <span>{formatCurrency(calculateTax(getCartTotal()))}</span>
                         </div>
                         <div className="summary-divider"></div>
                         <div className="summary-row summary-total">
@@ -115,8 +114,8 @@ const CartPage = () => {
                     Expected: Should be getCartTotal() * 0.1 for 10% tax */}
                                 {formatCurrency(
                                     getCartTotal() +
-                                    (getCartTotal() > 100 ? 0 : 10) +
-                                    getCartTotal() * TAX_RATE
+                                    calculateShipping(getCartTotal()) +
+                                    calculateTax(getCartTotal())
                                 )}
                             </span>
                         </div>
